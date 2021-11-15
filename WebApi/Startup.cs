@@ -40,12 +40,6 @@ namespace WebApi
             services.AddSingleton(Configuration.GetSection("MailSettings").Get<MailSettings>());
             services.AddSingleton(Configuration.GetSection("JwtSettings").Get<JwtSettings>());
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
-            });
-
             services.AddControllers().AddNewtonsoftJson(o =>
             {
                 o.SerializerSettings.Converters.Add(new StringEnumConverter
@@ -101,7 +95,7 @@ namespace WebApi
             else
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
-                     options.UseLazyLoadingProxies().UseSqlite(
+                     options.UseLazyLoadingProxies().UseSqlServer(
                         Configuration.GetConnectionString("DefaultConnection"),
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             }

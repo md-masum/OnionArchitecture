@@ -19,6 +19,8 @@ namespace Repository.Context
             _currentUserService = currentUserService;
         }
 
+        public DbSet<Test> Tests { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<BaseEntity>())
@@ -53,7 +55,7 @@ namespace Repository.Context
 
             base.OnModelCreating(builder);
 
-            builder.HasDefaultSchema("Berger");
+            builder.HasDefaultSchema("Kaz");
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "User");

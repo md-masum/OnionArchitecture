@@ -19,7 +19,7 @@ namespace WebApi
 {
     public class Program
     {
-        public async Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             //Read Configuration from appSettings
             var config = new ConfigurationBuilder()
